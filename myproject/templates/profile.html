@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<center>    <h1>LOGIN COMPLETED</h1>
+    <p>Welcome, {{ request.user.username }}!</p>
+    <p>Now Create Vehicle List</p>
+                <a class="nav-link" href="{% url 'vehicle_management:superadmin_vehicle_create' %}">Create Vehicle</a></center>
+<center><a href="{% url 'vehicle_management:superadmin_vehicle_list' %}">Vehicle List</a></button></center>
+{% endblock %}

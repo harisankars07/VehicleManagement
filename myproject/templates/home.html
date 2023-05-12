@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 offset-md-2 mt-3">
+        <p class="text-center">Welcome to my Vehicle Management System! This system is designed to help you manage your vehicles more efficiently.</p>
+        <p class="text-center">NOTE: **Please go to Admin Panel and create user**</p>
+        <center><a href="{% url 'vehicle_management:login' %}" class="btn btn-primary">Login</a></center>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <center><img src="{% static 'img/background.png' %}" class="img-fluid banner-img" alt="Banner Image"></center>
+      </div>
+    </div>
+  </div>
+<footer>
+<div class="mt-auto">
+  <p class="text-center">&copy;ABC TECH PVT. LTD. All Rights Reserved</p>
+</div>
+  </footer>
+{% endblock %}

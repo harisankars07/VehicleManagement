@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>{% block title %}Vehicle Management{% endblock %}</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css" integrity="sha512-NfCtPnmruGxEv5p3PyUEZWe30pZ1wpqlJi9X9weQFFy1RnIrY/FYtP+wzVVQJxN72ovR0W0N8T/gT9MIvxCGhA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="{% url 'vehicle_management:home' %}">Vehicle Management</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          {% if request.user.is_authenticated %}
+           <li class="nav-item">
+                <a class="nav-link" href="{% url 'vehicle_management:superadmin_vehicle_list' %}">Vehicle List</a>
+            </li>
+            {% if request.user.is_superuser %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'vehicle_management:superadmin_vehicle_create' %}">Create Vehicle</a>
+              </li>
+  {% endif %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'vehicle_management:logout' %}">Logout</a>
+            </li>
+          {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'vehicle_management:login' %}">Login</a>
+            </li>
+          {% endif %}
+        </ul>
+      </div>
+    </nav>
+    <div class="container my-4">
+      {% block content %}
+      {% endblock %}
+    </div>
+  </body>
+</html>

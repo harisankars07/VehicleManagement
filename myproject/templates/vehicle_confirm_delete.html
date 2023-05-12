@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Delete Vehicle</h2>
+  <p>Are you sure you want to delete "{{ vehicle.make }} {{ vehicle.model }}"?</p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Yes, Delete</button>
+    <a href="{% url 'vehicle_management:superadmin_vehicle_detail' pk=vehicle.pk %}" class="btn btn-primary">Cancel</a>
+  </form>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Vehicle Detail</h2>
+  <table class="table">
+    <tbody>
+      <tr>
+        <th>Vehicle Number:</th>
+        <td>{{ object.vehicle_number }}</td>
+      </tr>
+      <tr>
+        <th>Vehicle Type:</th>
+        <td>{{ object.vehicle_type }}</td>
+      </tr>
+      <tr>
+        <th>Vehicle Model:</th>
+        <td>{{ object.vehicle_model }}</td>
+      </tr>
+      <tr>
+        <th>Vehicle Description:</th>
+        <td>{{ object.vehicle_description }}</td>
+      </tr>
+    </tbody>
+  </table>
+  {% if request.user.is_superuser %}
+    <p><a href="{% url 'vehicle_management:superadmin_vehicle_update' object.pk %}">Update</a></p>
+  {% endif %}
+{% endblock %}

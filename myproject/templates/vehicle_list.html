@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Vehicle List</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Vehicle Number</th>
+        <th>Vehicle Type</th>
+        <th>Vehicle Model</th>
+        <th>Vehicle Description</th>
+        {% if request.user.is_staff %}
+          <th>Actions</th>
+        {% endif %}
+      </tr>
+    </thead>
+    <tbody>
+      {% for vehicle in object_list %}
+        <tr>
+          <td>{{ vehicle.vehicle_number }}</td>
+          <td>{{ vehicle.vehicle_type }}</td>
+          <td>{{ vehicle.vehicle_model }}</td>
+          <td>{{ vehicle.vehicle_description }}</td>
+          {% if request.user.is_staff %}
+            <td>
+              {% if request.user.is_superuser %}
+                <a href="{% url 'vehicle_management:superadmin_vehicle_detail' vehicle.pk %}">Detail</a> |
+                <a href="{% url 'vehicle_management:superadmin_vehicle_update' vehicle.pk %}">Update</a> |
+                <a href="{% url 'vehicle_management:superadmin_vehicle_delete' vehicle.pk %}">Delete</a>
+              {% else %}
+                <a href="{% url 'vehicle_management:admin_vehicle_detail' vehicle.pk %}">Detail</a> |
+                <a href="{% url 'vehicle_management:admin_vehicle_update' vehicle.pk %}">Update</a>
+              {% endif %}
+            </td>
+          {% endif %}
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
